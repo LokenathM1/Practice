@@ -107,6 +107,8 @@ INNER JOIN CTE AS C USING(product_id)
 WHERE order_date >= join_date
 GROUP BY S.customer_id;
 
+
+--solution 2
 SELECT s.Customer_id,
         sum(CASE
            WHEN product_name = 'sushi' THEN (price * 20)
@@ -135,6 +137,7 @@ SELECT DISTINCT Customer_id, SUM(C.Points) OVER (PARTITION BY s.customer_id) AS 
 FROM CTE AS C
 WHERE order_date >= join_date and MONTH(order_date) = 1;
 
+--solution 2
 SELECT s.Customer_id,
         sum(CASE
            WHEN order_date BETWEEN join_date and DATE_ADD(join_date, INTERVAL 6 DAY) THEN (price * 20)
