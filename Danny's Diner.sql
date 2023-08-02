@@ -92,6 +92,7 @@ INNER JOIN members AS mb USING(customer_id)
 INNER JOIN CTE AS C USING(product_id)
 WHERE order_date >= join_date;
 
+--solution 2
 WITH CTE AS (
     SELECT *,
         CASE
@@ -108,7 +109,7 @@ WHERE order_date >= join_date
 GROUP BY S.customer_id;
 
 
---solution 2
+--solution 3
 SELECT s.Customer_id,
         sum(CASE
            WHEN product_name = 'sushi' THEN (price * 20)
